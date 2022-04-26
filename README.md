@@ -3,13 +3,13 @@
     <h3 align="center">Gorilla</h3>
     <p align="center">A Distributed Lock Service, Set up in Minutes.</p>
     <p align="center">
-        <a href="https://github.com/Spacewalkio/Gorilla/actions/workflows/ci.yml">
-            <img src="https://github.com/Spacewalkio/Gorilla/actions/workflows/ci.yml/badge.svg"/>
+        <a href="https://github.com/Clevenio/Gorilla/actions/workflows/ci.yml">
+            <img src="https://github.com/Clevenio/Gorilla/actions/workflows/ci.yml/badge.svg"/>
         </a>
-        <a href="https://github.com/Spacewalkio/Gorilla/releases">
+        <a href="https://github.com/Clevenio/Gorilla/releases">
             <img src="https://img.shields.io/badge/Version-0.1.0-1abc9c.svg">
         </a>
-        <a href="https://github.com/Spacewalkio/Gorilla/blob/master/LICENSE">
+        <a href="https://github.com/Clevenio/Gorilla/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
@@ -172,12 +172,12 @@ Possible errors:
 
 For transparency into our release cycle and in striving to maintain backward compatibility, `Gorilla` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/spacewalkio/gorilla/releases) for changelogs for each release version of `Gorilla`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/spacewalkio/gorilla/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/clevenio/gorilla/releases) for changelogs for each release version of `Gorilla`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clevenio/gorilla/milestones) for the future roadmap.
 
 
 ### Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/spacewalkio/gorilla/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clevenio/gorilla/issues
 
 
 ### Security Issues
