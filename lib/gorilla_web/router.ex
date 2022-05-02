@@ -38,7 +38,10 @@ defmodule GorillaWeb.Router do
   scope "/api/v1", GorillaWeb do
     pipe_through :api
 
-    get "/_health", HealthController, :health
+    post "/locks/:resource", LockController, :create_lock
+    get "/locks/:resource/:token", LockController, :get_lock
+    put "/locks/:resource/:token", LockController, :update_lock
+    delete "/locks/:resource/:token", LockController, :release_lock
   end
 
   # Enables LiveDashboard only for development

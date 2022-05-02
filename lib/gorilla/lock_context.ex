@@ -12,7 +12,7 @@ defmodule Gorilla.LockContext do
     %{
       resource: lock.resource,
       owner: lock.owner,
-      expire_at: DateTime.utc_now() |> DateTime.add(lock.expire_at, :second),
+      expire_at: DateTime.utc_now() |> DateTime.add(lock.timeout, :second),
       token: Ecto.UUID.generate()
     }
   end
@@ -84,9 +84,10 @@ defmodule Gorilla.LockContext do
   end
 
   # Create a new lock meta attribute
-  def create_lock_meta(lock_id, attrs \\ %{}) do
-    changeset = LockMeta.changeset(%LockMeta{}, %{lock_id: lock_id} ++ attrs)
-    Repo.insert(changeset)
+  def create_lock_meta(attrs \\ %{}) do
+    %LockMeta{}
+    |> LockMeta.changeset(attrs)
+    |> Repo.insert()
   end
 
   # Retrieve a lock meta attribute by ID

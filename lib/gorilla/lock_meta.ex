@@ -17,7 +17,7 @@ defmodule Gorilla.LockMeta do
   @doc false
   def changeset(lock_meta, attrs) do
     lock_meta
-    |> cast(attrs, [:key, :value])
-    |> validate_required([:key, :value])
+    |> cast(attrs, [:key, :value, :lock_id])
+    |> validate_required([:key, :value, :lock_id])
   end
 end

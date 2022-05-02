@@ -125,6 +125,30 @@ Possible errors:
     HTTP/1.1 404 Not Found: The token is not associated with any lock for the resource.
 ```
 
+- **Extend Lock Time**: Extend the time a lock is held for a specific resource.
+
+```
+Endpoint:
+    PUT /locks/{resource}/{token}
+
+Request Body:
+    {
+      "timeout": "<maximum time (in seconds) the lock can be held>"
+    }
+
+Response:
+    HTTP/1.1 200 OK
+    {
+      "token": "<unique token for the extended lock>",
+      "timeout": "<actual time (in seconds) the lock can be held>"
+    }
+
+Possible errors:
+
+    HTTP/1.1 404 Not Found: The token is not associated with any lock for the resource.
+    HTTP/1.1 409 Conflict: The lock is already held by another owner or the extended timeout is less than the remaining time of the lock.
+```
+
 
 ### Versioning
 
