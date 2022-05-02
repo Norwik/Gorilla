@@ -75,18 +75,23 @@ Endpoint:
 
 Request Body:
     {
-      "owner": "<unique identifier for the requester>",
-      "timeout": "<maximum time (in seconds) the lock can be held>",
-      "metadata": "<any additional metadata for the lock>"
+        "owner": "<unique identifier for the requester>",
+        "timeout": "<maximum time (in seconds) the lock can be held>",
+        "metadata": "<any additional metadata for the lock>"
     }
-
 
 Response:
     HTTP/1.1 200 OK
     {
-      "token": "<unique token for the acquired lock>",
-      "timeout": "<actual time (in seconds) the lock can be held>",
-      "metadata": "<metadata associated with the lock>"
+        "id": <The lock ID>,
+        "owner": "<The lock owner>",
+        "resource": "<The lock resource name>",
+        "token": "<A new unique token for the extended lock>",
+        "timeout": <Actual time (in seconds) the lock can be held>,
+        "metadata": ["list", "of", "metadata"],
+        "createdAt": "2023-03-14T18:35:04",
+        "updatedAt": "2023-03-14T18:35:04",
+        "expireAt": "2023-03-14T19:35:04"
     }
 
 Possible errors:
@@ -116,9 +121,15 @@ Endpoint:
 Response:
     HTTP/1.1 200 OK
     {
-      "owner": "<unique identifier of the owner>",
-      "timeout": "<actual time (in seconds) the lock can be held>",
-      "metadata": "<metadata associated with the lock>"
+        "id": <The lock ID>,
+        "owner": "<The lock owner>",
+        "resource": "<The lock resource name>",
+        "token": "<A new unique token for the extended lock>",
+        "timeout": <Actual time (in seconds) the lock can be held>,
+        "metadata": ["list", "of", "metadata"],
+        "createdAt": "2023-03-14T18:35:04",
+        "updatedAt": "2023-03-14T18:35:04",
+        "expireAt": "2023-03-14T19:35:04"
     }
 
 Possible errors:
@@ -133,21 +144,28 @@ Endpoint:
 
 Request Body:
     {
-      "timeout": "<maximum time (in seconds) the lock can be held>"
+        "timeout": <maximum time (in seconds) the lock can be held>
     }
 
 Response:
     HTTP/1.1 200 OK
     {
-      "token": "<unique token for the extended lock>",
-      "timeout": "<actual time (in seconds) the lock can be held>"
+        "id": <The lock ID>,
+        "owner": "<The lock owner>",
+        "resource": "<The lock resource name>",
+        "token": "<A new unique token for the extended lock>",
+        "timeout": <Actual time (in seconds) the lock can be held>,
+        "metadata": ["list", "of", "metadata"],
+        "createdAt": "2023-03-14T18:35:04",
+        "updatedAt": "2023-03-14T18:35:04",
+        "expireAt": "2023-03-14T19:35:04"
     }
 
 Possible errors:
-
     HTTP/1.1 404 Not Found: The token is not associated with any lock for the resource.
     HTTP/1.1 409 Conflict: The lock is already held by another owner or the extended timeout is less than the remaining time of the lock.
 ```
+
 
 
 ### Versioning

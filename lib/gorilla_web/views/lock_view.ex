@@ -14,7 +14,7 @@ defmodule GorillaWeb.LockView do
       owner: lock.owner,
       timeout: timeout,
       metadata: metadata,
-      expire_at: lock.expire_at,
+      expireAt: lock.expire_at,
       createdAt: lock.inserted_at,
       updatedAt: lock.updated_at
     }
