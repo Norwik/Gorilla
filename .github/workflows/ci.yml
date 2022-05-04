@@ -19,11 +19,13 @@ jobs:
           '1.14.0',
           '1.14.1'
         ]
+
     services:
       db:
         image: postgres:latest
         ports: ['5432:5432']
         env:
+          POSTGRES_DB: gorilla_dev
           POSTGRES_USER: gorilla
           POSTGRES_PASSWORD: gorilla
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5

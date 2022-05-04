@@ -140,7 +140,7 @@ Possible errors:
 
 ```
 Endpoint:
-    PUT /locks/{resource}/{token}
+    PUT /api/v1/locks/{resource}/{token}
 
 Request Body:
     {
