@@ -7,7 +7,7 @@ defmodule GorillaWeb.LockController do
   alias Gorilla.LockContext
 
   # Create a new Lock Endpoint
-  def create_lock(conn, params) do
+  def create(conn, params) do
     resource = params["resource"] || ""
     metadata = params["metadata"] || []
     owner = params["owner"] || ""
@@ -68,7 +68,7 @@ defmodule GorillaWeb.LockController do
   end
 
   # Update Lock Endpoint
-  def update_lock(conn, params) do
+  def update(conn, params) do
     resource = params["resource"] || ""
     token = params["token"] || ""
     new_timeout = params["timeout"] || 0
@@ -124,7 +124,7 @@ defmodule GorillaWeb.LockController do
   end
 
   # Get Lock Endpoint
-  def get_lock(conn, %{"resource" => resource, "token" => token}) do
+  def get(conn, %{"resource" => resource, "token" => token}) do
     case LockContext.get_lock_by_token_resource(resource, token) do
       nil ->
         conn
@@ -154,7 +154,7 @@ defmodule GorillaWeb.LockController do
   end
 
   # Release Lock Endpoint
-  def release_lock(conn, %{"resource" => resource, "token" => token}) do
+  def release(conn, %{"resource" => resource, "token" => token}) do
     lock = LockContext.get_lock_by_token_resource(resource, token)
 
     case lock do
