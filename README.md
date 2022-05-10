@@ -18,7 +18,7 @@
 Gorilla is a distributed lock service that allows multiple processes or nodes to coordinate and synchronize access to a shared resource or data.
 
 
-#### Getting Started
+### Getting Started
 
 To install dependencies.
 
@@ -65,7 +65,7 @@ $ docker run -itd \
 ```
 
 
-#### Service Endpoints
+### Service Endpoints
 
 - **Acquire Lock**: Acquire a lock for a specific resource.
 
@@ -126,29 +126,29 @@ Possible errors:
 ```
 
 
-#### Versioning
+### Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, `Gorilla` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
 See the [Releases section of our GitHub project](https://github.com/spacewalkio/gorilla/releases) for changelogs for each release version of `Gorilla`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/spacewalkio/gorilla/milestones) for the future roadmap.
 
 
-#### Bug tracker
+### Bug tracker
 
 If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/spacewalkio/gorilla/issues
 
 
-#### Security Issues
+### Security Issues
 
 If you discover a security vulnerability within `Gorilla`, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
 
 
-#### Contributing
+### Contributing
 
 We are an open source, community-driven project so please feel free to join us. see the [contributing guidelines](CONTRIBUTING.md) for more details.
 
 
-#### License
+### License
 
 © 2023, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
