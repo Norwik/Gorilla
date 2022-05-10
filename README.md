@@ -15,6 +15,8 @@
     </p>
 </p>
 
+Gorilla is a distributed lock service that allows multiple processes or nodes to coordinate and synchronize access to a shared resource or data.
+
 
 ### Getting Started
 
@@ -60,6 +62,71 @@ $ docker run -itd \
     -p 5432:5432 \
     --name postgresql \
     postgres:15.2
+```
+
+
+### Endpoints
+
+- Acquire Lock: Acquire a lock for a specific resource.
+
+```
+Endpoint: POST /locks/{resource}
+
+Request Body:
+
+{
+  "owner": "<unique identifier for the requester>",
+  "timeout": "<maximum time (in seconds) the lock can be held>",
+  "metadata": "<any additional metadata for the lock>"
+}
+
+
+Response:
+
+HTTP/1.1 200 OK
+
+{
+  "token": "<unique token for the acquired lock>",
+  "timeout": "<actual time (in seconds) the lock can be held>"
+}
+
+Possible errors:
+
+HTTP/1.1 409 Conflict: The lock is already held by another owner.
+HTTP/1.1 400 Bad Request: The request is invalid or missing required parameters.
+```
+
+- Release Lock: Release a lock for a specific resource.
+
+```
+Endpoint: DELETE /locks/{resource}/{token}
+
+Response:
+
+HTTP/1.1 204 No Content
+
+Possible errors:
+
+HTTP/1.1 404 Not Found: The token is not associated with any lock for the resource.
+```
+
+- Check Lock Status: Get the status of a lock for a specific resource.
+
+```
+Endpoint: GET /locks/{resource}/{token}
+
+Response:
+
+HTTP/1.1 200 OK
+{
+  "owner": "<unique identifier of the owner>",
+  "timeout": "<actual time (in seconds) the lock can be held>",
+  "metadata": "<metadata associated with the lock>"
+}
+
+Possible errors:
+
+HTTP/1.1 404 Not Found: The token is not associated with any lock for the resource.
 ```
 
 
