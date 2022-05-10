@@ -7,8 +7,8 @@ defmodule Gorilla.Lock do
   import Ecto.Changeset
 
   schema "locks" do
-    field :uuid, Ecto.UUID
-    field :name, :string
+    field :token, Ecto.UUID
+    field :resource, :string
     field :owner, :string
     field :expire_at, :utc_datetime
 
@@ -18,7 +18,7 @@ defmodule Gorilla.Lock do
   @doc false
   def changeset(lock, attrs) do
     lock
-    |> cast(attrs, [:uuid, :name, :owner, :expire_at])
-    |> validate_required([:uuid, :name, :owner, :expire_at])
+    |> cast(attrs, [:token, :resource, :owner, :expire_at])
+    |> validate_required([:token, :resource, :owner, :expire_at])
   end
 end

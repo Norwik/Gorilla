@@ -6,8 +6,10 @@ defmodule GorillaWeb.HealthController do
   use GorillaWeb, :controller
 
   def health(conn, _params) do
+    body = Jason.encode!(%{status: "ok"})
+
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, "{\"status\": \"ok\"}")
+    |> send_resp(200, body)
   end
 end

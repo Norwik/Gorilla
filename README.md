@@ -71,7 +71,7 @@ $ docker run -itd \
 
 ```pre
 Endpoint:
-    POST /locks/{resource}
+    POST /api/v1/locks/{resource}
 
 Request Body:
     {
@@ -98,7 +98,7 @@ Possible errors:
 
 ```
 Endpoint:
-    DELETE /locks/{resource}/{token}
+    DELETE /api/v1/locks/{resource}/{token}
 
 Response:
     HTTP/1.1 204 No Content
@@ -111,7 +111,7 @@ Possible errors:
 
 ```
 Endpoint:
-    GET /locks/{resource}/{token}
+    GET /api/v1/locks/{resource}/{token}
 
 Response:
     HTTP/1.1 200 OK

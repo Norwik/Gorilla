@@ -16,7 +16,6 @@ defmodule GorillaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug CORSPlug
   end
 
   pipeline :pub do
@@ -38,6 +37,8 @@ defmodule GorillaWeb.Router do
 
   scope "/api/v1", GorillaWeb do
     pipe_through :api
+
+    get "/_health", HealthController, :health
   end
 
   # Enables LiveDashboard only for development

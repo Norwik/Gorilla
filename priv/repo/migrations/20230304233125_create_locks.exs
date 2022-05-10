@@ -7,14 +7,14 @@ defmodule Gorilla.Repo.Migrations.CreateLocks do
 
   def change do
     create table(:locks) do
-      add :uuid, :uuid
-      add :name, :string, unique: true
+      add :token, :uuid
+      add :resource, :string, unique: true
       add :owner, :string
       add :expire_at, :utc_datetime
 
       timestamps()
     end
 
-    create index(:locks, [:name])
+    create index(:locks, [:resource])
   end
 end

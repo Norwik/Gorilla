@@ -5,15 +5,15 @@
 # Lock Context Module
 defmodule Gorilla.LockContext do
   import Ecto.Query
-  alias Gorilla.{Repo, LockMeta, Lock}
+  alias Gorilla.{Repo, Lock, LockMeta}
 
   # Get a lock map
   def new_lock(lock \\ %{}) do
     %{
-      name: lock.name,
+      resource: lock.resource,
       owner: lock.owner,
-      expire_at: lock.expire_at,
-      uuid: Ecto.UUID.generate()
+      expire_at: DateTime.utc_now() |> DateTime.add(lock.expire_at, :second),
+      token: Ecto.UUID.generate()
     }
   end
 
@@ -28,63 +28,40 @@ defmodule Gorilla.LockContext do
 
   # Create a new lock
   def create_lock(attrs \\ %{}) do
-    %Client{}
-    |> Client.changeset(attrs)
+    %Lock{}
+    |> Lock.changeset(attrs)
     |> Repo.insert()
-  end
-
-  # Count all locks
-  def count_locks(country, gender) do
-    case {country, gender} do
-      {country, gender} when country != "" and gender != "" ->
-        from(u in Client,
-          select: count(u.id),
-          where: u.country == ^country,
-          where: u.gender == ^gender
-        )
-        |> Repo.one()
-
-      {country, gender} when country == "" and gender == "" ->
-        from(u in Client,
-          select: count(u.id)
-        )
-        |> Repo.one()
-
-      {country, gender} when country != "" and gender == "" ->
-        from(u in Client,
-          select: count(u.id),
-          where: u.country == ^country
-        )
-        |> Repo.one()
-
-      {country, gender} when country == "" and gender != "" ->
-        from(u in Client,
-          select: count(u.id),
-          where: u.gender == ^gender
-        )
-        |> Repo.one()
-    end
   end
 
   # Retrieve a lock by ID
   def get_lock_by_id(id) do
-    Repo.get(Client, id)
+    Repo.get(Lock, id)
   end
 
-  # Get lock by uuid
-  def get_lock_by_uuid(uuid) do
+  # Get lock by token
+  def get_lock_by_token(token) do
     from(
-      u in Client,
-      where: u.uuid == ^uuid
+      u in Lock,
+      where: u.token == ^token
     )
     |> Repo.one()
   end
 
-  # Get lock by username
-  def get_lock_by_username(username) do
+  # Get lock by resource
+  def get_lock_by_resource(resource) do
     from(
-      u in Client,
-      where: u.username == ^username
+      u in Lock,
+      where: u.resource == ^resource
+    )
+    |> Repo.one()
+  end
+
+  # Get lock by resource and token
+  def get_lock_by_token_resource(resource, token) do
+    from(
+      u in Lock,
+      where: u.resource == ^resource,
+      where: u.token == ^token
     )
     |> Repo.one()
   end
@@ -92,7 +69,7 @@ defmodule Gorilla.LockContext do
   # Update a lock
   def update_lock(lock, attrs) do
     lock
-    |> Client.changeset(attrs)
+    |> Lock.changeset(attrs)
     |> Repo.update()
   end
 
@@ -103,60 +80,23 @@ defmodule Gorilla.LockContext do
 
   # Retrieve all locks
   def get_locks() do
-    Repo.all(Client)
-  end
-
-  # Retrieve locks
-  def get_locks(country, gender, offset, limit) do
-    case {country, gender, offset, limit} do
-      {country, gender, offset, limit} when country != "" and gender != "" ->
-        from(u in Client,
-          where: u.country == ^country,
-          where: u.gender == ^gender,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-
-      {country, gender, offset, limit} when country == "" and gender == "" ->
-        from(u in Client,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-
-      {country, gender, offset, limit} when country != "" and gender == "" ->
-        from(u in Client,
-          where: u.country == ^country,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-
-      {country, gender, offset, limit} when country == "" and gender != "" ->
-        from(u in Client,
-          where: u.gender == ^gender,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-    end
+    Repo.all(Lock)
   end
 
   # Create a new lock meta attribute
   def create_lock_meta(lock_id, attrs \\ %{}) do
-    changeset = ClientMeta.changeset(%ClientMeta{}, %{lock_id: lock_id} ++ attrs)
+    changeset = LockMeta.changeset(%LockMeta{}, %{lock_id: lock_id} ++ attrs)
     Repo.insert(changeset)
   end
 
   # Retrieve a lock meta attribute by ID
   def get_lock_meta_by_id(id) do
-    Repo.get(ClientMeta, id)
+    Repo.get(LockMeta, id)
   end
 
   # Update a lock meta attribute
   def update_lock_meta(lock_meta, attrs) do
-    changeset = ClientMeta.changeset(lock_meta, attrs)
+    changeset = LockMeta.changeset(lock_meta, attrs)
     Repo.update(changeset)
   end
 
@@ -168,7 +108,7 @@ defmodule Gorilla.LockContext do
   # Get lock meta by lock and key
   def get_lock_meta_by_key(lock_id, meta_key) do
     from(
-      u in ClientMeta,
+      u in LockMeta,
       where: u.lock_id == ^lock_id,
       where: u.key == ^meta_key
     )
@@ -178,7 +118,7 @@ defmodule Gorilla.LockContext do
   # Get lock metas
   def get_lock_metas(lock_id) do
     from(
-      u in ClientMeta,
+      u in LockMeta,
       where: u.lock_id == ^lock_id
     )
     |> Repo.all()
