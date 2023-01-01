@@ -7,7 +7,7 @@
             <img src="https://github.com/Clevenio/Gorilla/actions/workflows/ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clevenio/Gorilla/releases">
-            <img src="https://img.shields.io/badge/Version-0.1.0-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.1.1-1abc9c.svg">
         </a>
         <a href="https://github.com/Clevenio/Gorilla/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
@@ -35,6 +35,9 @@ $ make migrate
 To start the application.
 
 ```zsh
+$ cp .env.example .env.local
+$ export $(cat .env | xargs)
+
 $ make run
 ```
 
@@ -62,6 +65,17 @@ $ docker run -itd \
     -p 5432:5432 \
     --name postgresql \
     postgres:15.2
+
+$ podman run -itd \
+    -e POSTGRES_USER=brangus \
+    -e POSTGRES_PASSWORD=brangus \
+    -e POSTGRES_DB=brangus_dev \
+    -p 5432:5432 \
+    --name postgresql \
+    postgres:15.2
+
+# https://github.com/dbcli/pgcli
+$ psql -h 127.0.0.1 -U brangus -d brangus_dev -W
 ```
 
 

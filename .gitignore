@@ -35,3 +35,7 @@ npm-debug.log
 gorilla_test*
 gorilla_dev*
 .vscode
+
+!.env.example
+.env.*
+.env
