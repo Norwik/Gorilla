@@ -12,7 +12,7 @@ config :gorilla,
 
 # Configures the endpoint
 config :gorilla, GorillaWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: System.get_env("APP_HOST") || "localhost"],
   render_errors: [view: GorillaWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Gorilla.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]

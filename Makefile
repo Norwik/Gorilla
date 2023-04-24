@@ -35,6 +35,7 @@ deps:
 .PHONY: test
 test:
 	@echo ">> ============= Test code ============= <<"
+	@export $(grep -v '^#' .env.test | xargs)
 	$(mix) test
 
 
