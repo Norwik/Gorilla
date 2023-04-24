@@ -19,7 +19,7 @@ if System.get_env("DB_SSL") == "on" do
     ssl: true,
     ssl_opts: [
       verify: :verify_peer,
-      cacertfile: System.get_env("DB_CA_CERTFILE_PATH")
+      cacertfile: System.get_env("DB_CA_CERTFILE_PATH") || ""
     ]
 else
   config :gorilla, Gorilla.Repo,
@@ -48,7 +48,7 @@ config :gorilla, GorillaWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: System.get_env("APP_SECRET"),
+  secret_key_base: System.get_env("APP_SECRET") || "",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
