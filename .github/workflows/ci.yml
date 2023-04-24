@@ -38,12 +38,65 @@ jobs:
 
       - name: Get dependencies
         run: make deps
+        env:
+          APP_NAME: Gorilla
+          APP_PORT: 4000
+          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
+          APP_HOST: localhost
+          APP_HTTP_SCHEMA: http
+          DB_USERNAME: gorilla
+          DB_PASSWORD: gorilla
+          DB_HOSTNAME: localhost
+          DB_DATABASE: gorilla_dev
+          DB_PORT: 5432
+          DB_SSL: off
+          DB_CA_CERTFILE_PATH:
+
 
       - name: Check gorilla format
         run: make fmt_check
+        env:
+          APP_NAME: Gorilla
+          APP_PORT: 4000
+          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
+          APP_HOST: localhost
+          APP_HTTP_SCHEMA: http
+          DB_USERNAME: gorilla
+          DB_PASSWORD: gorilla
+          DB_HOSTNAME: localhost
+          DB_DATABASE: gorilla_dev
+          DB_PORT: 5432
+          DB_SSL: off
+          DB_CA_CERTFILE_PATH:
 
       - name: Test gorilla
         run: make ci
+        env:
+          APP_NAME: Gorilla
+          APP_PORT: 4000
+          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
+          APP_HOST: localhost
+          APP_HTTP_SCHEMA: http
+          DB_USERNAME: gorilla
+          DB_PASSWORD: gorilla
+          DB_HOSTNAME: localhost
+          DB_DATABASE: gorilla_dev
+          DB_PORT: 5432
+          DB_SSL: off
+          DB_CA_CERTFILE_PATH:
 
       - name: Build gorilla
         run: make build
+        env:
+          APP_NAME: Gorilla
+          APP_PORT: 4000
+          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
+          APP_HOST: localhost
+          APP_HTTP_SCHEMA: http
+          DB_USERNAME: gorilla
+          DB_PASSWORD: gorilla
+          DB_HOSTNAME: localhost
+          DB_DATABASE: gorilla_dev
+          DB_PORT: 5432
+          DB_SSL: off
+          DB_CA_CERTFILE_PATH:
