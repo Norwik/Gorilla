@@ -39,23 +39,19 @@ jobs:
       - name: Get dependencies
         run: make deps
         env:
-          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
           DB_SSL: off
 
       - name: Check gorilla format
         run: make fmt_check
         env:
-          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
           DB_SSL: off
 
       - name: Test gorilla
         run: make ci
         env:
-          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
           DB_SSL: off
 
       - name: Build gorilla
         run: make build
         env:
-          APP_SECRET: 76b3tsME0Sixg04dlGsxx48vhJz5EZndgXTUly32vxpsgifl5J/QDZRfe/zv0WSR
           DB_SSL: off
