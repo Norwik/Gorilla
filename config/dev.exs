@@ -11,7 +11,7 @@ if System.get_env("DB_SSL") == "on" do
     maintenance_database: System.get_env("DB_DATABASE") || "gorilla_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
-    pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
+    pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10")
     #ssl: true,
     #ssl_opts: [
     #  verify: :verify_peer,
