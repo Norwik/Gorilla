@@ -38,20 +38,12 @@ jobs:
 
       - name: Get dependencies
         run: make deps
-        env:
-          DB_SSL: off
 
       - name: Check gorilla format
         run: make fmt_check
-        env:
-          DB_SSL: off
 
       - name: Test gorilla
         run: make ci
-        env:
-          DB_SSL: off
 
       - name: Build gorilla
         run: make build
-        env:
-          DB_SSL: off

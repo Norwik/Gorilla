@@ -5,7 +5,7 @@
 import Config
 
 # Configure your database
-if System.get_env("DB_SSL") == "on" do
+if System.get_env("DB_SSL") || "off" == "on" do
   config :gorilla, Gorilla.Repo,
     username: System.get_env("DB_USERNAME") || "gorilla",
     password: System.get_env("DB_PASSWORD") || "gorilla",
