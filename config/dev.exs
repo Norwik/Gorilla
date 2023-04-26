@@ -1,14 +1,34 @@
 import Config
 
 # Configure your database
-config :gorilla, Gorilla.Repo,
-  username: "gorilla",
-  password: "gorilla",
-  hostname: "localhost",
-  database: "gorilla_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+if System.get_env("DB_SSL") == "on" do
+  config :gorilla, Gorilla.Repo,
+    username: System.get_env("DB_USERNAME") || "gorilla",
+    password: System.get_env("DB_PASSWORD") || "gorilla",
+    hostname: System.get_env("DB_HOSTNAME") || "localhost",
+    database: System.get_env("DB_DATABASE") || "gorilla_dev",
+    port: String.to_integer(System.get_env("DB_PORT") || 5432),
+    maintenance_database: System.get_env("DB_DATABASE") || "gorilla_dev",
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
+    #ssl: true,
+    #ssl_opts: [
+    #  verify: :verify_peer,
+    #  cacertfile: System.get_env("DB_CA_CERTFILE_PATH") || ""
+    #]
+else
+  config :gorilla, Gorilla.Repo,
+    username: System.get_env("DB_USERNAME") || "gorilla",
+    password: System.get_env("DB_PASSWORD") || "gorilla",
+    hostname: System.get_env("DB_HOSTNAME") || "localhost",
+    database: System.get_env("DB_DATABASE") || "gorilla_dev",
+    port: String.to_integer(System.get_env("DB_PORT") || 5432),
+    maintenance_database: System.get_env("DB_DATABASE") || "gorilla_dev",
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10")
+end
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
