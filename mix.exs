@@ -53,7 +53,7 @@ defmodule Gorilla.MixProject do
       {:phoenix_live_dashboard, "~> 0.6"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.24"},
       {:jason, "~> 1.4"},
